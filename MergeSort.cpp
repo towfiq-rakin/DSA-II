@@ -26,16 +26,6 @@
 #include <iostream>
 using namespace std;
 
-void MergeSort(int arr[], int l, int r){
-    // Check if the array has more than one element
-    if(l < r){
-        int m = (l + r) / 2; // middle index of the array
-
-        MergeSort(arr, l, m); 
-        MergeSort(arr, m+1, r);
-        Merge(arr, l, m, r);
-    }
-}
 void Merge(int arr[], int l, int m, int r){
     int n1 = m-l+1; // size of left array
     int n2 = r-m; // size of right array
@@ -56,6 +46,17 @@ void Merge(int arr[], int l, int m, int r){
             arr[k] = L[i++];
         else
             arr[k] = R[j++];
+    }
+}
+
+void MergeSort(int arr[], int l, int r){
+    // Check if the array has more than one element
+    if(l < r){
+        int m = (l + r) / 2; // middle index of the array
+
+        MergeSort(arr, l, m); 
+        MergeSort(arr, m+1, r);
+        Merge(arr, l, m, r);
     }
 }
 
