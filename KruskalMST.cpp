@@ -1,6 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -70,17 +68,14 @@ public:
     }
 
     void KruskalMST() {
-        // Vector to store the result
-        vector<Edge> result;
-        // sort() the edges
-        sort(edges.begin(), edges.end(), compareEdges);
+        vector<Edge> result; // Vector to store the result
+        sort(edges.begin(), edges.end(), compareEdges); // sort() the edges
         vector<Subset> subsets(v);
         //initialize the subsets parent (as itself) and level (as 0)
         for (int i = 0; i < v; i++) {
             subsets[i].parent = i;
             subsets[i].level = 0;
         }
-        // Sort edges in non-decreasing order of their weight
         // Index used to pick next edge
         for (int i = 0; result.size() < v - 1 && i < edges.size();i++)
         {
@@ -98,7 +93,7 @@ public:
 };
 
 int main(){
-    int V = 4;  // Number of vertices in the graph
+    int V = 9;  // Number of vertices in the graph
     Graph graph(V);
 
     // Add edges
@@ -106,7 +101,13 @@ int main(){
     graph.addEdge(0, 2, 6);
     graph.addEdge(0, 3, 5);
     graph.addEdge(1, 3, 15);
+    graph.addEdge(1, 4, 8);
     graph.addEdge(2, 3, 4);
+    graph.addEdge(2, 6, 6);
+    graph.addEdge(4, 6, 3);
+    graph.addEdge(5, 6, 4);
+    graph.addEdge(5, 7, 7);
+    graph.addEdge(5, 8, 6);
 
     // Run Kruskal's algorithm
     graph.KruskalMST();
