@@ -5,6 +5,9 @@ using namespace std;
 // Structure to represent an edge
 struct Edge {
     int src, dest, weight;
+    bool operator<(Edge const& other) {
+        return weight < other.weight;
+    }
 };
 
 // Structure to represent a subset for union-find
@@ -23,41 +26,40 @@ class Graph {
 
 public:
     // Constructor
-    Graph(int n) {
-    	v = n;
+    Graph(int v){
+        this->v = v;
     }
-
+    
     void addEdge(int src, int dest, int weight) {
             //push back the new edge
             edges.push_back({src, dest, weight});
         }
 
+    int find_root(vector<Subset>& subsets, int i) {
+        // find the first parent of i recursively
+        if (subsets[i].parent != i)
+            subsets[i].parent = find_root(subsets, subsets[i].parent);
+        return subsets[i].parent;
+    }
 
-    int find_root(vector<Subset>& subsets, int i)
-        {
-            // find the first parent of i recursively
-            if (subsets[i].parent != i)
-                subsets[i].parent = find_root(subsets, subsets[i].parent);
-            return subsets[i].parent;
-        }
     void Union(vector<Subset>& subsets, int x, int y) {
-            int xroot = find_root(subsets, x);
-            int yroot = find_root(subsets, y);
+        int xroot = find_root(subsets, x);
+        int yroot = find_root(subsets, y);
 
-            //update the parent and level of xroot/ yroot
-                //if subsets[xroot].level < subsets[yroot].level -> update yroot as parent of xroot
-                //if subsets[xroot].level > subsets[yroot].level -> update xroot as parent of yroot
-                //else -> update xroot as parent of yroot and increase the level of xroot
+        //update the parent and level of xroot/ yroot
+            //if subsets[xroot].level < subsets[yroot].level -> update yroot as parent of xroot
+            //if subsets[xroot].level > subsets[yroot].level -> update xroot as parent of yroot
+            //else -> update xroot as parent of yroot and increase the level of xroot
             
-            if (subsets[xroot].level < subsets[yroot].level) {
-                subsets[xroot].parent = yroot;
-            } else if (subsets[xroot].level > subsets[yroot].level) {
+        if (subsets[xroot].level < subsets[yroot].level) {
+            subsets[xroot].parent = yroot;
+        } else if (subsets[xroot].level > subsets[yroot].level) {
                 subsets[yroot].parent = xroot;
-            } else {
-                subsets[yroot].parent = xroot;
-                subsets[xroot].level++;
-            }
+        } else {
+            subsets[yroot].parent = xroot;
+            subsets[xroot].level++;
         }
+    }
 
     void printMST(vector<Edge> result){
         // print src, dest, weight for all the vertices
@@ -69,7 +71,9 @@ public:
 
     void KruskalMST() {
         vector<Edge> result; // Vector to store the result
-        sort(edges.begin(), edges.end(), compareEdges); // sort() the edges
+
+        sort(edges.begin(), edges.end()); // sort() the edges
+        
         vector<Subset> subsets(v);
         //initialize the subsets parent (as itself) and level (as 0)
         for (int i = 0; i < v; i++) {
@@ -77,7 +81,7 @@ public:
             subsets[i].level = 0;
         }
         // Index used to pick next edge
-        for (int i = 0; result.size() < v - 1 && i < edges.size();i++)
+        for (int i = 0; result.size() < v - 1 && i < edges.size(); i++)
         {
             // Pick the smallest edge
             Edge current_edge = edges[i];
@@ -93,8 +97,8 @@ public:
 };
 
 int main(){
-    int V = 9;  // Number of vertices in the graph
-    Graph graph(V);
+ // Number of vertices in the graph
+    Graph graph(9);
 
     // Add edges
     graph.addEdge(0, 1, 10);
