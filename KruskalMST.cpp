@@ -23,7 +23,7 @@ bool compareEdges(const Edge& a, const Edge& b) {
 class Graph {
     int v;  // Number of vertices
     vector<Edge> edges; // Vector to store edges
-
+    int wght = 0; // Variable to store the total weight of the MST
 public:
     // Constructor
     Graph(int v){
@@ -67,6 +67,7 @@ public:
         for (int i = 0; i < result.size(); i++) {
             cout << result[i].src << " - " << result[i].dest << "\t" << result[i].weight << endl;
         }
+        cout << "Total weight of MST: " << wght << endl;
     }
 
     void KruskalMST() {
@@ -89,6 +90,7 @@ public:
             int y = find_root(subsets, current_edge.dest);
             if (x != y) {
                 result.push_back(current_edge);
+                wght += current_edge.weight; 
                 Union(subsets, x, y);
             }
         }
