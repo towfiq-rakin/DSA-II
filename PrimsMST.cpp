@@ -1,7 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int V = 5;
+const int V = 9;
+int wght = 0;
 
 int minWeight(int weight[], bool visited[]){
     int minimum = INT_MAX;
@@ -21,7 +22,10 @@ void printMST(int parent[], int graph[V][V]){
     cout << "Edge \tWeight\n";
     for(int i = 1; i < V; i++){
         cout << parent[i] << " - " << i << "\t" << graph[i][parent[i]] << endl;
+        wght += graph[i][parent[i]]; // Add the weight of the edge to the total weight
     }
+
+    cout << "Total weight of MST: " << wght << endl;
     
 }
 
@@ -50,9 +54,10 @@ void primMST(int graph[V][V]){
             and the weight of the edge is smaller than the weight of V then,
             upadate u as a parent & update the weight of V as the edge weight 
             */
-            if (graph[u][v] && !visited[v] && graph[u][v] < weight[v]) {
+            if (graph[u][v] != 0 && visited[v] == false && graph[u][v] < weight[v]) {
                 parent[v] = u;
                 weight[v] = graph[u][v];
+                //wght += graph[u][v]; 
             }
         }
     }
@@ -61,11 +66,15 @@ void primMST(int graph[V][V]){
 
 int main(){
     int graph[V][V] ={
-        {0,2,0,6,0},
-        {2,0,3,8,5},
-        {0,3,0,0,7},
-        {6,8,0,0,9},
-        {0,5,7,9,0}
+        {0, 10, 6, 5, 0, 0, 0, 0, 0}, 
+        {10, 0, 0, 15, 8, 0, 0, 0, 0}, 
+        {6, 0, 0, 4, 0, 0, 6, 0, 0}, 
+        {5, 15, 4, 0, 0, 0, 0, 0, 0}, 
+        {0, 8, 0, 0, 0, 0, 3, 0, 0}, 
+        {0, 0, 0, 0, 0, 0, 4, 7, 6}, 
+        {0, 0, 6, 0, 3, 4, 0, 0, 0}, 
+        {0, 0, 0, 0, 0, 7, 0, 0, 0}, 
+        {0, 0, 0, 0, 0, 6, 0, 0, 0}
     };
     primMST(graph);
 }
