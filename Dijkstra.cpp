@@ -33,12 +33,6 @@ void dijkstra(int src){
     }
 }
 
-void printPath(int v){
-    if(p[v] == -1) return; 
-    printPath(p[v]); 
-    cout << " " << v; 
-}
-
 int main() {
     int n, m; // number of vertices and edges
     //cout << "Enter number of vertices and edges: ";
@@ -62,12 +56,7 @@ int main() {
 
     cout << "Distances from source " << src << ":" << endl;
     for(int i = 0; i < n; ++i){
-        cout << i << " : " << d[i] <<"\t";
-        if(d[i] != INF){
-            cout << "Path: " << src;
-            printPath(i); // print the path from source to vertex i
-        }
-        cout << endl;
+        cout << i << " : " << d[i] << endl; // print distances
     }
 }
 
