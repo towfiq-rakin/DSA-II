@@ -34,11 +34,11 @@ struct Edge{
     }
 };
 
-vector<int> parent, rnk;
+vector<int> parent, level;
 
 void make_set(int v){
     parent[v] = v;
-    rnk[v] = 0;
+    level[v] = 0;
 }
 
 int find_set(int v){
@@ -49,9 +49,9 @@ void Union(int a, int b){
      a = find_set(a);
      b = find_set(b);
     if(a != b){
-        if(rnk[a] < rnk[b]) swap(a, b);
+        if(level[a] < level[b]) swap(a, b);
         parent[b] = a;
-        if(rnk[a] == rnk[b]) rnk[a]++;
+        if(level[a] == level[b]) level[a]++;
     }
 }
 
@@ -63,7 +63,7 @@ int main(){
     vector<Edge> edges(m);
     vector<Edge> result;
     parent.resize(n);
-    rnk.resize(n);
+    level.resize(n);
 
     for(int i=0; i<m; i++){
         string u, v;
@@ -72,16 +72,12 @@ int main(){
         edges[i].v = dept[v];
     }
 
-    //cout << "check 1" << endl;
     for(int i=0; i<n; i++) make_set(i);
 
-    //cout << "check 2" << endl;
     sort(edges.begin(), edges.end());
 
-    //cout << "check 3" << endl;
     for(Edge e : edges){
         if(find_set(e.u) != find_set(e.v)){
-            //cout << 0 << " ";
             cost += e.weight;
             result.push_back(e);
             Union(e.u, e.v);

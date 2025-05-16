@@ -1,10 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void knapsack(int W, vector<int> &wt, vector<int> &val, vector<int> keep[]){
+void knapsack(int W, vector<int> &wt, vector<int> &val){
     int n = wt.size()-1;
     vector<int> dp(W + 1, 0);
-    
+    vector<int> keep[W+1];
     for (int i = 1; i <= n; i++) {
         for (int j = W; j >= wt[i]; j--) {
             if (dp[j - wt[i]] + val[i] > dp[j]) {
@@ -22,11 +22,11 @@ void knapsack(int W, vector<int> &wt, vector<int> &val, vector<int> keep[]){
 int main() {
     int n, W; 
     cin >> n >> W;
-    vector<int> wt(n + 1), val(n + 1), keep[W + 1];
+    vector<int> wt(n + 1), val(n + 1);
     for (int i = 1; i <= n; i++) 
         cin >> wt[i] >> val[i];
     
-    knapsack(W, wt, val, keep);
+    knapsack(W, wt, val);
     return 0;
 }
 
