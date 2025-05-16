@@ -21,7 +21,7 @@ void knapsack(int W, vector<int> &wt, vector<int> &val){
 
 int main() {
     int n, W; 
-    cin >> n >> W;
+    cin >> n >> W; // Number of items and maximum weight
     vector<int> wt(n + 1), val(n + 1);
     for (int i = 1; i <= n; i++) 
         cin >> wt[i] >> val[i];
