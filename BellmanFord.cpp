@@ -25,8 +25,8 @@ void print() {
 }
 
 int main() {
-    int n, m;
-    cin >> n >> m ;
+    int n, m; // Number of vertices and edges
+    cin >> n >> m; 
     edges.resize(m);
     d.resize(n, INF);
     for (int i = 0; i < m; ++i) {
