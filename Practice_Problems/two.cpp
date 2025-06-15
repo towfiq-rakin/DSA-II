@@ -71,7 +71,7 @@ int main() {
     parent.resize(n);
     level.resize(n);
 
-    cout << "Enter connection (village1 village2 weight): ";
+    cout << "Enter connection (village1 village2 weight): " << endl;
     for(int i = 0; i < n; i++) {
         string u, v;
         cin >> u >> v >> edges[i].weight;
@@ -91,7 +91,7 @@ int main() {
         }
     }
 
-    cout << "Total cost: " << cost << endl;
+    cout << endl << "Total cost: " << cost << endl;
     cout << "Selected connections:\n";
     for (Edge e : result) {
         cout << villagekey[e.u] << " - " << villagekey[e.v] << " : " << e.weight << endl;
