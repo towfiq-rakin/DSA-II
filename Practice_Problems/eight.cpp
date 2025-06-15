@@ -36,10 +36,11 @@ Village 2 - Village 3 (Cost: 3)
 Village 1 - Village 2 (Cost: 4)
 Village 0 - Village 3 (Cost: 5)
 Optimal Drone Loading:
-Maximum utility: 75
+Maximum utility: 95
 Selected items:
-MedKit (Weight: 5, Utility: 40)
+Blanket (Weight: 4, Utility: 20)
 Water (Weight: 6, Utility: 35)
+MedKit (Weight: 5, Utility: 40)
 */
 
 #include <bits/stdc++.h>
@@ -170,7 +171,7 @@ int main(){
     }
 
     cout << endl;
-    
+
     vector<Edge> mst = kruskal.findMST();
     cout << "Minimum Spanning Tree:\n";
     cout << "Total cable cost: " << kruskal.cost << endl;
