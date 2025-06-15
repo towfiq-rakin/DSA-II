@@ -84,8 +84,17 @@ int main(){
         }
     }
 
-    cout << "Total cost: " << cost << endl;
-    for(Edge e: result){
+    string start = "CS";
+
+    for (auto it = result.begin(); it != result.end(); ++it) {
+        if (deptkey[it->u] == start) {
+            swap(*it, result[0]);
+            break;
+        }
+    }
+
+    cout << "Minimum Spanning Tree starting from " << start << ":" << endl;
+    for(auto e : result){
         cout << deptkey[e.u] << " - " << deptkey[e.v] << "\t" << e.weight << endl;
     }
 }
