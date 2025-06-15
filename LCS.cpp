@@ -27,21 +27,21 @@ int main(){
         }
     }
 
-    // cout << endl << "LCS lenght table (c):" << endl;
-    // for(int i = 0; i <= n; ++i){
-    //     for(int j = 0; j <= m; ++j){
-    //         cout << c[i][j] << " ";
-    //     }
-    //     cout << endl;
-    // }
+    cout << endl << "LCS lenght table (c):" << endl;
+    for(int i = 0; i <= n; ++i){
+        for(int j = 0; j <= m; ++j){
+            cout << c[i][j] << " ";
+        }
+        cout << endl;
+    }
 
-    // cout << endl << "LCS direction table (b):" << endl;
-    // for(int i = 1; i <= n; ++i){
-    //     for(int j = 1; j <= m; ++j){
-    //         cout << b[i][j] << " ";
-    //     }
-    //     cout << endl;
-    // }
+    cout << endl << "LCS direction table (b):" << endl;
+    for(int i = 1; i <= n; ++i){
+        for(int j = 1; j <= m; ++j){
+            cout << b[i][j] << " ";
+        }
+        cout << endl;
+    }
 
     string lcs;
     int i = n, j = m;

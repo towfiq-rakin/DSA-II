@@ -2,32 +2,31 @@
 using namespace std;
 
 const int INF = INT_MAX;
-vector<vector<pair<int, int>>> graph; // adjacency list representation of the graph
-vector<int> d; // distance array to store the shortest distance from the source
-vector<int> p; // parent array to reconstruct the path
-
+vector<vector<pair<int, int>>> graph; 
+vector<int> d; 
+vector<int> p; 
 void dijkstra(int src){
     int n =  graph.size();
-    d.assign(n, INF); // initialize distances to infinity
-    p.assign(n, -1); // initialize parents to -1
-    d[src] = 0; // distance to source is 0
+    d.assign(n, INF); 
+    p.assign(n, -1); 
+    d[src] = 0; 
 
-    set<pair<int, int>> pq; // priority queue to store (distance, vertex) pairs
+    set<pair<int, int>> pq; 
     pq.insert({0, src}); 
 
     while(!pq.empty()){
-        int u = pq.begin()->second; // get the vertex with the smallest distance
+        int u = pq.begin()->second; 
         pq.erase(pq.begin());
 
         for(auto edge : graph[u]){
-            int v = edge.first; // destination vertex
-            int w = edge.second; // weight of the edge
+            int v = edge.first;
+            int w = edge.second; 
 
-            if(d[v] > w + d[u]){ // relax the edge
+            if(d[v] > w + d[u]){ 
                 pq.erase({d[v], v}); 
                 d[v] = d[u] + w; 
                 p[v] = u; 
-                pq.insert({d[v], v}); // insert the new distance into the priority queue
+                pq.insert({d[v], v}); 
             }
         }
     }
@@ -35,28 +34,28 @@ void dijkstra(int src){
 
 int main() {
     int n, m; // number of vertices and edges
-    //cout << "Enter number of vertices and edges: ";
+    cout << "Enter number of vertices and edges: ";
     cin >> n >> m;
     graph.resize(n);
 
-    //cout << "Enter edges (u v w):" << endl;
+    cout << "Enter edges (u v w):" << endl;
     for(int i = 0; i < m; ++i){
         int u, v, w;
-        cin >> u >> v >> w; // read edge from u to v with weight w
+        cin >> u >> v >> w; 
         graph[u].push_back({v, w});
 
         // graph[v].push_back({u, w}); // uncomment for undirected graph
     }
 
     int src;
-    //cout << "Enter source vertex: ";
+    cout << "Enter source vertex: ";
     cin >> src;
 
-    dijkstra(src); // run Dijkstra's algorithm
+    dijkstra(src); 
 
     cout << "Distances from source " << src << ":" << endl;
     for(int i = 0; i < n; ++i){
-        cout << i << " : " << d[i] << endl; // print distances
+        cout << i << " : " << d[i] << endl; 
     }
 }
 
