@@ -61,9 +61,11 @@ int binarySearch(const vector<Employee> &emp, int id) {
 int main() {
     int n;
     cout << "Enter the number of emp: ";
+    cout << "Enter the number of emp: ";
     cin >> n;
 
     vector<Employee> emp(n);
+    cout << "Enter Employee ID, Name, and Salary for each employee:" << endl;
     cout << "Enter Employee ID, Name, and Salary for each employee:" << endl;
     for (int i = 0; i < n; ++i) {
         cin >> emp[i].id >> emp[i].name >> emp[i].salary;
@@ -79,6 +81,7 @@ int main() {
 
     int searchId;
     cout << "Enter Employee ID to search: ";
+    cout << "Enter Employee ID to search: ";
     cin >> searchId;
     int index = binarySearch(emp, searchId);
 
@@ -92,6 +95,12 @@ int main() {
 /*
 input:
 5
+104 CR_Muhit 50000
+105 CR_Shahed 60000
+103 Alpha 55000
+101 Beta 70000
+102 Gamma 65000
+101           
 104 CR_Muhit 50000
 105 CR_Shahed 60000
 103 Alpha 55000
