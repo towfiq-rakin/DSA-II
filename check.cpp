@@ -1,3 +1,9 @@
+/*
+This code implements all the algorthms.
+Each class implements a specific algorithm.
+You can create an object of the class and call the methods to use the algorithm.
+*/
+
 #include <bits/stdc++.h>
 #define INF INT_MAX
 using namespace std;
@@ -384,35 +390,35 @@ public:
 };
 
 int main() {
-    // int n, m;
-    // cin >> n >> m; // Number of vertices and edges for Dijkstra/Bellman-Ford
-    // //Dijkstra dijkstra(n);
-    // BellmanFord bellmanFord(n);
+    int n, m;
+    cin >> n >> m; // Number of vertices and edges for Dijkstra/Bellman-Ford
+    //Dijkstra dijkstra(n);
+    BellmanFord bellmanFord(n);
 
-    // for (int i = 0; i < m; i++) {
-    //     int u, v, w;
-    //     cin >> u >> v >> w;
-    //     //dijkstra.addEdge(u, v, w);
-    //     bellmanFord.addEdge(u, v, w);
-    // }
+    for (int i = 0; i < m; i++) {
+        int u, v, w;
+        cin >> u >> v >> w;
+        //dijkstra.addEdge(u, v, w);
+        bellmanFord.addEdge(u, v, w);
+    }
 
-    // //dijkstra.findShortestPath(0);
-    // if (bellmanFord.compute(0)) {
-    //     // cout << "Shortest distances from source:\n";
-    //     // vector<int> distances = bellmanFord.getDistances();
-    //     // for (int i = 0; i < n; i++) {
-    //     //     cout << "0 to " << i << " : " << (distances[i] == INF ? "INF" : to_string(distances[i])) << endl;
-    //     // }
-    //     cout << "Minimum distance from 0 to 2: " << bellmanFord.getMinDistance(2) << endl;
-    //     // path
-    //     vector<int> path = bellmanFord.getPath(2);
-    //     cout << "Path from 0 to " << 2 << ": ";
-    //     for (int v : path) {
-    //         cout << v << " ";
-    //     }
-    // } else {
-    //     cout << "Negative weight cycle detected.\n";
-    // }
+    //dijkstra.findShortestPath(0);
+    if (bellmanFord.compute(0)) {
+        // cout << "Shortest distances from source:\n";
+        // vector<int> distances = bellmanFord.getDistances();
+        // for (int i = 0; i < n; i++) {
+        //     cout << "0 to " << i << " : " << (distances[i] == INF ? "INF" : to_string(distances[i])) << endl;
+        // }
+        cout << "Minimum distance from 0 to 2: " << bellmanFord.getMinDistance(2) << endl;
+        // path
+        vector<int> path = bellmanFord.getPath(2);
+        cout << "Path from 0 to " << 2 << ": ";
+        for (int v : path) {
+            cout << v << " ";
+        }
+    } else {
+        cout << "Negative weight cycle detected.\n";
+    }
 
     LCS lcs("AGGTAB", "GXTXAYB");
     cout << "\nLCS: " << lcs.getLCS() << endl;
